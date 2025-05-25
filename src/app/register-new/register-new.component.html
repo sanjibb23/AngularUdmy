@@ -1,0 +1,45 @@
+<div class="container col-md-4 mt-5">
+    <h1 class="text-center">Register</h1>
+    <form [formGroup] ="registerForm" (ngSubmit) = "register()">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control"   formControlName="username"
+        [class.is-invalid]="shouldShowError('username')"
+        >
+        <div  class="invalid-feedback" *ngIf="shouldShowError('username')"> 
+            {{ getErrorMessage('username') }}
+          </div>
+      </div>
+      <div class="mb-3">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" 
+        [class.is-invalid]="shouldShowError('dateOfBirth')" style="width: 218px;">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <div class="invalid-feedback" *ngIf="shouldShowError('dateOfBirth')"> 
+            {{ getErrorMessage('dateOfBirth') }}
+          </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password"
+        [class.is-invalid]="shouldShowError('password')">
+        <div class="invalid-feedback" *ngIf="shouldShowError('password')"> 
+            {{ getErrorMessage('password') }}
+          </div>
+      </div>
+
+      
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" formControlName="confirmPassword"
+        [class.is-invalid]="shouldShowError('confirmPassword')">
+        <div class="invalid-feedback" *ngIf="shouldShowError('confirmPassword')"> 
+            {{ getErrorMessage('confirmPassword') }}
+          </div>
+      </div>
+
+       
+      <button type="submit" class="btn btn-primary" [disabled] = "!registerForm.valid"  >Register</button>
+    </form>
+  </div>

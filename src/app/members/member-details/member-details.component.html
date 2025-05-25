@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-4">
+        <div class="card">
+            <img src="{{member?.MainPhotoUrl}}" alt="{{member?.KnownAs}}" class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{member?.City}}, {{member?.Country}}</p>
+                </div>
+                <div>
+                    <strong>Age:</strong>
+                    <p>{{member?.Age}}</p>
+                </div>
+                <div>
+                    <strong>Last Active:</strong>
+                    <p>{{member?.LastActive}}</p>
+                </div>
+                <div>
+                    <strong>Interests:</strong>
+                    <p>{{member?.Interest}}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button class="btn btn-primary">Like</button>
+                    <button class="btn btn-success">Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" [class.active]="activeTab === 'about'" (click)="activeTab = 'about'"
+                    id="about-tab" type="button" role="tab">
+                    About
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" [class.active]="activeTab === 'interest'" (click)="activeTab = 'interest'"
+                    id="interest-tab" type="button" role="tab">
+                    Interests
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" [class.active]="activeTab === 'photo'" (click)="activeTab = 'photo'"
+                    id="photo-tab" type="button" role="tab">
+                    Photos
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" [class.active]="activeTab === 'message'" (click)="onMessageTabClick()"
+                    id="message-tab" type="button" role="tab">
+                    Messages
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade" [ngClass]="{ 'show active': activeTab === 'about' }" id="about" role="tabpanel">
+                <h4>Description</h4>
+                <p>{{ member?.Introduction }}</p>
+                <h4>Looking for</h4>
+                <p>{{ member?.LookingFor }}</p>
+            </div>
+
+            <div class="tab-pane fade" [ngClass]="{ 'show active': activeTab === 'interest' }" id="interest"
+                role="tabpanel">
+                <h4>Interests</h4>
+                <p>{{ member?.Interest }}</p>
+            </div>
+
+            <div class="tab-pane fade" [ngClass]="{ 'show active': activeTab === 'photo' }" id="photo" role="tabpanel">
+                <div class="row">
+                    <div class="col-4 mb-2" *ngFor="let photo of member?.UserPhotos">
+                        <img [src]="photo.FilePath" [alt]="photo.FileName" class="img-thumbnail w-100" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" [ngClass]="{ 'show active': activeTab === 'message' }" id="message"
+                role="tabpanel">
+                <h4>Messages</h4>
+                <span class="badge float-end" [class.bg-success]="member?.IsOnline" [class.bg-secondary]="!member?.IsOnline">
+                    {{ member?.IsOnline ? 'Online' : 'Offline' }}
+                </span>
+                <app-message [userMessages] = "member?.Messages"
+                [SelectedUserId] = "member?.Id" ></app-message>
+            </div>
+        </div>
+    </div>

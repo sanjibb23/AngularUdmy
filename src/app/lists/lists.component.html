@@ -1,0 +1,35 @@
+<div>
+    <div class="like-buttons">
+  <button 
+    (click)="loadLikes('me')" 
+    [class.active]="activeTab === 'me'">
+    Likes by Me
+  </button>
+  <button 
+    (click)="loadLikes('others')" 
+    [class.active]="activeTab === 'others'">
+    Likes by Others
+  </button>
+  <button 
+    (click)="loadLikes('mutual')" 
+    [class.active]="activeTab === 'mutual'">
+    Mutual Likes
+  </button>
+</div>
+    <h2>Likes</h2>
+
+    <div class="row">
+      <div class="col-3" *ngFor="let member of members">
+        <app-member-card
+          [usermember]="member"></app-member-card>
+      </div>
+      <div class="col-3" *ngIf="members.length === 0">
+        <p>No members found.</p>  
+      </div>
+    </div>
+
+
+
+    
+  
+</div>
