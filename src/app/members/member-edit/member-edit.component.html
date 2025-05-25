@@ -1,0 +1,82 @@
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <h1>Your profile</h1>
+    </div>
+    <div class="col-8">
+        <div class="alert alert-info" *ngIf="editForm.dirty">
+            <strong>Information: </strong> You have made changes.  Any unsaved changes will be lost
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <img src="{{member?.MainPhotoUrl}}" alt="{{member?.KnownAs}}"  
+                class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{member?.City}}, {{member?.Country}}</p>
+                </div>
+                <div>
+                    <strong>Age:</strong>
+                    <p>{{member?.Age}}</p>
+                </div>
+                <div>
+                    <strong>Last Active:</strong>
+                    <p>{{member?.LastActive}}</p>
+                </div>
+                <div>
+                    <strong>Interests:</strong>
+                    <p>{{member?.Interest}}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button   type="submit" [disabled]="!editForm.dirty" form="editForm"
+                 class="btn btn-success btn-block"
+                  style="float: right;">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about"
+                    type="button" role="tab" aria-controls="about" aria-selected="true">About</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="photo-tab" data-bs-toggle="tab" data-bs-target="#photo" type="button"
+                    role="tab" aria-controls="photo" aria-selected="false">Photos</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+               
+               
+                <form  #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+                    <h4>Description</h4>
+                    <textarea class="form-control" [(ngModel)]="member.Introduction" name="Introduction" rows="6"></textarea>
+                    <h4 class="mt-2">Looking for</h4>
+                    <textarea class="form-control" [(ngModel)]="member.LookingFor" name="LookingFor" rows="2"></textarea>
+                    <h4 class="mt-2">Interests</h4>
+                    <textarea class="form-control" [(ngModel)]="member.Interest" name="Interest" rows="2"></textarea>
+                    <h4 class="mt-2">Location Details: </h4>
+                    <div class="d-flex align-items-center flex-wrap gap-2">
+                        <label for="City" class="me-2">City:</label>
+                        <input id="City" [(ngModel)]="member.City" type="text" name="City" class="form-control me-4" style="width: 150px;" />
+                        <label for="Country" class="me-2">Country:</label>
+                        <input id="Country" [(ngModel)]="member.Country" type="text" name="Country" class="form-control" style="width: 150px;" />
+                    </div>                   
+                </form>
+                
+
+
+
+            </div>
+            <div class="tab-pane fade" id="photo" role="tabpanel" aria-labelledby="photo-tab">             
+               
+
+                <app-photo-editor [member] = "member"></app-photo-editor>
+            </div>
+           
+        </div>
+    </div>
+</div>

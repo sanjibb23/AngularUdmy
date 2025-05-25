@@ -1,0 +1,28 @@
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div #chatBox class="border rounded p-3 mb-3 chat-box bg-light" style="height: 400px; overflow-y: auto;">
+        <div *ngFor="let msg of userMessages" class="mb-2">
+          <div [ngClass]="{
+                    'd-flex justify-content-end': msg.SenderId === LoginUser?.Id,
+                    'd-flex justify-content-start': msg.SenderId !== LoginUser?.Id
+                      }">
+            <div [ngClass]="{
+                      'bg-primary text-white': msg.SenderId === LogInUserId,
+                      'bg-secondary text-white': msg.SenderId !== LogInUserId
+                    }" class="rounded px-3 py-2" style="max-width: 70%;">
+              <small><b>{{ msg.SenderId === LogInUserId ? 'You' : 'Other' }}:</b></small><br>
+              {{ msg.Content }}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="input-group">
+        <input [(ngModel)]="newMessage" class="form-control" placeholder="Type a message..." (keyup.enter)="send()" />
+        <button class="btn btn-primary" (click)="send()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

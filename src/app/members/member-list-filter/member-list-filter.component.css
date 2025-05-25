@@ -1,0 +1,19 @@
+.filter-bar {
+    margin: 10px auto;
+    text-align: left  ;
+  }
+  
+  .filter-bar input {
+    padding: 8px 12px;
+    width: 250px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin: 5px;
+  }
+  .filter-bar select {
+    padding: 8px 12px;
+    width: 250px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+
+  }

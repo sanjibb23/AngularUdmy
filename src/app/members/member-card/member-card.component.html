@@ -1,0 +1,34 @@
+<div class="card mb-4">
+  <div class="card-img-wrapper">
+      <img src="{{usermember.MainPhotoUrl}}" *ngIf = "usermember.MainPhotoUrl" alt="{{usermember.KnownAs}}" class="card-img-top">
+      <img src="https://res.cloudinary.com/dvg284mgd/image/upload/v1746684871/da-net8/rnnunfnkwhcxxxx34jlz.png"
+       *ngIf = "!usermember.MainPhotoUrl" alt="{{usermember.KnownAs}}" class="card-img-top">
+      
+      <ul class="list-inline member-icons animate text-center">
+          <li class="list-inline-item"><button routerLink = "/members/{{usermember.UserName}}"  class="btn btn-primary">
+              <i class="fa fa-user"></i></button>
+            </li>
+        <li class="list-inline-item">
+            <button class="btn btn-primary" (click)="toggleLike(usermember.Id)">
+                <i class="fa fa-heart"></i>
+            </button>
+        </li>
+        <li class="list-inline-item">
+            <button class="btn btn-primary" routerLink = "/members/{{usermember.UserName}}#message">
+                <i class="fa fa-envelope"></i>
+            </button>
+        </li>
+      </ul>
+  </div>
+  <div class="card-body p-1">
+      <h6 class="card-title text-center mb-1">
+              <span *ngIf="isOnline$ | async; else offline">🟢 Online</span>
+              <ng-template #offline></ng-template>
+
+          
+          {{usermember.UserName}}, {{usermember.Age}}
+          <i class="fa fa-heart" [style.fontSize]="'2em'" [style.color]="heartcolor" *ngIf = "usermember.LikebyCurrentUser"></i>
+        </h6>
+      <p class="card-text text-muted text-center">{{usermember.City}}</p>
+  </div>
+</div>
