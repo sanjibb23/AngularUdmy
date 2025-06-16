@@ -12,7 +12,7 @@ import { PaginatedResult } from '../_models/PaginatedResult';
 })
 export class MembersService {
 
-  baseUrl = 'https://localhost:44347/api/';
+  baseUrl = 'https://az400api-djabcqhjckd2bvba.northeurope-01.azurewebsites.net/api/';
   members: member[] = [];
   private usersCache: member[] | null = null;
   constructor(private http: HttpClient, private accountService : AccountService) { 

@@ -17,7 +17,7 @@ export class AccountService {
       this.curUser = user;
     });
   }
-  baseUrl = 'https://localhost:44347/api/';
+  baseUrl = 'https://az400api-djabcqhjckd2bvba.northeurope-01.azurewebsites.net/api/';
 
   currentUser = new ReplaySubject<User | null>(1);
   currentUser$ = this.currentUser.asObservable();

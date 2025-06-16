@@ -16,7 +16,7 @@ export class PresenceService {
 
   public startConnection(username: string) {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://localhost:44347/presence?username=' + username)
+      .withUrl('https://az400api-djabcqhjckd2bvba.northeurope-01.azurewebsites.net/presence?username=' + username)
       .withAutomaticReconnect()
       .build();
 
