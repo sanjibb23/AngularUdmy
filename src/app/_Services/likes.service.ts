@@ -9,7 +9,7 @@ import { MembersService } from './members.service';
   providedIn: 'root'
 })
 export class LikesService {
-baseUrl = 'https://localhost:44347/api/';
+baseUrl = 'https://az400api-djabcqhjckd2bvba.northeurope-01.azurewebsites.net/api/';
   constructor(private http: HttpClient,private memberService: MembersService) { }
 
 

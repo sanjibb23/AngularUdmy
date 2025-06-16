@@ -23,7 +23,7 @@ export class SignalRService {
 
   startConnection(userId: number): void {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl("https://localhost:44347/chatHub?userId=" + userId, {
+      .withUrl("https://az400api-djabcqhjckd2bvba.northeurope-01.azurewebsites.net/chatHub?userId=" + userId, {
         withCredentials: true
       })
       .build();
